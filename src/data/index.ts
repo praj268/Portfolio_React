@@ -3,6 +3,7 @@ import pro1Image1 from '../assets/pro1.png';  // Adjust path relative to your da
 import pro1Image2 from '../assets/pro16.png';
 import pro1Image3 from '../assets/pro3.png';
 import pro1Image4 from '../assets/pro-4.png';
+import pro1Image5 from '../assets/pro-5.png';
 // import {
 //   Github,
 //   Linkedin,
@@ -169,9 +170,19 @@ export const projects: Project[] = [
       'A full-stack e-commerce platform for sustainable fashion. Features include user authentication, product catalog, shopping cart, and secure payment processing.',
     tags: ['React', 'Node.js', 'MongoDB', 'Firebase', 'Express'],
     image: pro1Image1,
-    github: 'https://github.com/praj268/Sustainable-Fashion-Marketplace',
-    link: 'https://github.com/praj268/Sustainable-Fashion-Marketplace',
+    github: 'https://github.com/praj268/Sustainable-Fashion-Marketplace/blob/main/README.md',
+    link: 'https://github.com/praj268/Sustainable-Fashion-Marketplace/blob/main/README.md',
   }, {
+    id: 6,
+    title: 'React Portfolio',
+    description:
+      'A personal portfolio project built with React to showcase projects, skills, and contact information. Features interactive UI and clean design.',
+    tags: ['React', 'CSS', 'JavaScript'],
+    image: pro1Image5,
+    github: 'https://github.com/praj268/Portfolio_Using_React',
+    link: 'https://strong-blancmange-85f1eb.netlify.app/',
+  },
+  {
     id: 5,
     title: 'Lighten',
     description:
@@ -188,7 +199,8 @@ export const projects: Project[] = [
       'A modern portfolio website built with React and Tailwind CSS, featuring dark mode, animations, and responsive design.',
     tags: ['React', 'Tailwind CSS', 'Framer Motion'],
     image: pro1Image4,
-    github: 'https://github.com/praj268',
+    github: 'https://github.com/praj268/Portfolio_React',
+    link: 'https://prajaktaportfolio2003.netlify.app/',
   },
   {
     id: 3,
@@ -198,9 +210,7 @@ export const projects: Project[] = [
     tags: ['Java', 'Swing', 'NLP', 'Desktop App'],
     image: 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg',
     github: 'https://github.com/praj268',
-  }
-  ,
-
+  },
   {
     id: 4,
     title: 'Virtual Closet Organizer',
@@ -210,8 +220,7 @@ export const projects: Project[] = [
     image: 'https://images.pexels.com/photos/3965545/pexels-photo-3965545.jpeg',
     github: 'https://github.com/praj268',
     link: 'https://github.com/praj268',
-  }
-  ,
+  },
 
 ];
 
