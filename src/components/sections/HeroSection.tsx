@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
             </h1>
             <p className="mb-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
               Software Engineer working on Python backends, data-processing pipelines and
-              event-driven AWS workflows, with full-stack experience in Django and React.
+              event-driven AWS workflows.
             </p>
             <p className="mb-6 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
               I'm focused on <strong>AI and agentic AI engineering</strong>: building LLM agents
