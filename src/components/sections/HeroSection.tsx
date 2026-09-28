@@ -75,7 +75,7 @@ const HeroSection: React.FC = () => {
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 rounded-xl px-4 py-2 shadow-lg text-sm font-medium">
-                ~1 yr professional experience
+                1+ year professional experience
               </div>
             </div>
           </motion.div>

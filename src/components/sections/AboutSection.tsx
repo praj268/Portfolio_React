@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import myimg from '../../assets/my-img-1.jpeg';
 
 const highlights = [
-  { value: '~1 yr', label: 'Professional experience' },
+  { value: '1+ yr', label: 'Professional experience' },
   { value: '3', label: 'Environments I ship through: Integration, UAT, Prod' },
   { value: 'AI', label: 'Current focus: agentic AI & LLM engineering' },
 ];
@@ -46,7 +46,7 @@ const AboutSection: React.FC = () => {
             </motion.h2>
 
             <motion.p variants={fadeIn} className="mb-4 text-gray-600 dark:text-gray-300">
-              I'm a <strong>Software Engineer</strong> based in India with about a year of
+              I'm a <strong>Software Engineer</strong> based in India with 1+ year of
               professional experience. I work mainly in <strong>Python</strong> on backend
               development, web crawling and data processing, with event-driven workflows on{' '}
               <strong>AWS</strong> and data in <strong>PostgreSQL</strong> and{' '}
