@@ -12,6 +12,7 @@ const ContactSection: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -29,17 +30,23 @@ const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
 
     try {
       await emailjs.send(
         "service_yn63p4f",   // Service ID
         "template_tvkmsuv",  // Template ID
         {
+          // Several aliases so the EmailJS template works with {{from_name}} or {{name}} etc.
           from_name: formData.name,
           from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
+          reply_to: formData.email,
           message: formData.message,
+          time: new Date().toLocaleString(),
         },
-        "nlgg5sW3tIPDNhcPh"  // Public Key
+        { publicKey: "nlgg5sW3tIPDNhcPh" }
       );
 
       // ✅ Success
@@ -52,7 +59,9 @@ const ContactSection: React.FC = () => {
     } catch (error) {
       console.error("FAILED...", error);
       setIsSubmitting(false);
-      alert("Something went wrong. Please try again later.");
+      setError(
+        "Sorry, the message couldn't be sent. Please email me directly at patilprajakta2682003@gmail.com."
+      );
     }
   };
 
@@ -70,8 +79,8 @@ const ContactSection: React.FC = () => {
             Get In <span className="text-primary-500">Touch</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Have a project in mind or want to chat? Feel free to contact me and
-            I'll get back to you as soon as possible.
+            Want to talk about backend, data or AI engineering work? Send me a
+            message and I'll get back to you.
           </p>
         </motion.div>
 
@@ -84,9 +93,8 @@ const ContactSection: React.FC = () => {
           >
             <h3 className="text-2xl font-bold mb-6">Let's Talk</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
-              Whether you have a question, project proposal, or just want to say
-              hello, my inbox is always open. I'll do my best to get back to you
-              promptly.
+              Whether it's an opportunity, a question about my work, or just to
+              say hello, my inbox is open.
             </p>
 
             <div className="space-y-6">
@@ -144,7 +152,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-medium mb-1">Location</h4>
-                  <p className="text-gray-600 dark:text-gray-300">Jalgaon</p>
+                  <p className="text-gray-600 dark:text-gray-300">India</p>
                 </div>
               </div>
             </div>
@@ -249,6 +257,11 @@ const ContactSection: React.FC = () => {
                       resize-none"
                     ></textarea>
                   </div>
+                  {error && (
+                    <p className="mb-4 p-3 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm">
+                      {error}
+                    </p>
+                  )}
                   <button
                     type="submit"
                     disabled={isSubmitting}

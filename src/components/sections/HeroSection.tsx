@@ -1,9 +1,18 @@
 import React from 'react';
 import { ArrowDown, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
-import resumeFile from '../../assets/resume.pdf'; // Adjust path based on location
+import resumeFile from '../../assets/resume.pdf';
 import myimg from '../../assets/my-img-2.jpeg';
 
+const focusAreas = [
+  'Python',
+  'AWS',
+  'Data Processing',
+  'PostgreSQL',
+  'Agentic AI',
+  'LangChain / LangGraph',
+  'LLM Engineering',
+];
 
 const HeroSection: React.FC = () => {
   return (
@@ -18,29 +27,37 @@ const HeroSection: React.FC = () => {
           >
             <span className="block mb-4 text-primary-500 font-semibold">Hello, I'm</span>
             <h1 className="mb-6">
-              <span className="gradient-text">Prajakta</span>
-              <span className="block mt-2 gradient-text">Java Full Stack Developer</span>
+              <span className="gradient-text">Prajakta Patil</span>
+              <span className="block mt-2 text-gray-800 dark:text-gray-100">Software Engineer</span>
             </h1>
-            <p className="mb-8 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
-              I create exceptional digital experiences with clean code and user-centered design.
-              Specializing in Java, Spring Boot, and full-stack web development.
+            <p className="mb-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
+              Software Engineer working on Python backends, data-processing pipelines and
+              event-driven AWS workflows, with full-stack experience in Django and React.
             </p>
+            <p className="mb-6 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
+              I'm focused on <strong>AI and agentic AI engineering</strong>: building LLM agents
+              with LangChain and LangGraph, experimenting with a Data Quality Agent and Text-to-SQL,
+              designing human-in-the-loop workflows, and using Claude Code for AI-assisted
+              development every day.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {focusAreas.map((area) => (
+                <span
+                  key={area}
+                  className="px-3 py-1 text-sm rounded-full border border-primary-200 dark:border-primary-800 text-primary-700 dark:text-primary-300"
+                >
+                  {area}
+                </span>
+              ))}
+            </div>
             <div className="flex flex-wrap gap-4">
-              <a
-                href="#contact"
-                className="btn btn-primary flex items-center gap-2"
-              >
-                Contact Me
+              <a href="#experience" className="btn btn-primary flex items-center gap-2">
+                View My Work
               </a>
-              <a
-                href={resumeFile}
-                className="btn btn-outline flex items-center gap-2"
-                download
-              >
+              <a href={resumeFile} className="btn btn-outline flex items-center gap-2" download>
                 Download CV
                 <Download className="h-4 w-4" />
               </a>
-
             </div>
           </motion.div>
           <motion.div
@@ -56,10 +73,9 @@ const HeroSection: React.FC = () => {
                   alt="Prajakta Patil"
                   className="w-60 h-60 md:w-76 md:h-76 rounded-full object-cover"
                 />
-
               </div>
-              <div className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 rounded-xl p-3 shadow-lg">
-                <span className="text-2xl">👋</span>
+              <div className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 rounded-xl px-4 py-2 shadow-lg text-sm font-medium">
+                ~1 yr professional experience
               </div>
             </div>
           </motion.div>

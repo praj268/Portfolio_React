@@ -1,121 +1,110 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { skills } from '../../data';
-// import { FaReact, FaGitAlt, FaNodeJs } from 'react-icons/fa';
-// import { SiTypescript, SiTailwindcss, SiNextdotjs, SiFigma, SiGraphql } from 'react-icons/si';
+import { currentlyLearning, skillGroups } from '../../data';
+import { BookOpen, Cloud, Code, Database, Layout, LucideIcon, Sparkles, Wrench } from 'lucide-react';
+
+const groupIcons: Record<string, LucideIcon> = {
+  code: Code,
+  database: Database,
+  cloud: Cloud,
+  layout: Layout,
+  sparkles: Sparkles,
+  wrench: Wrench,
+};
 
 const SkillsSection: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<string>('all');
   const [ref, inView] = useInView({
-    threshold: 0.1,
+    threshold: 0.05,
     triggerOnce: true,
   });
 
-  const filteredSkills = activeFilter === 'all'
-    ? skills
-    : skills.filter(skill => skill.category === activeFilter);
-
-  const categoryTypes = [
-    { id: 'all', name: 'All Skills' },
-    { id: 'frontend', name: 'Frontend' },
-    { id: 'backend', name: 'Backend' },
-    { id: 'design', name: 'Design' },
-    { id: 'other', name: 'Other' },
-  ];
-
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="skills" className="py-20 bg-white dark:bg-gray-800">
       <div className="container-custom">
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <h2 className="section-title">
-            My <span className="text-primary-500">Skills</span>
+            Technical <span className="text-primary-500">Skills</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            These are the technologies and tools I've worked with throughout my career.
-            I'm constantly learning and expanding my skillset.
+            Technologies I've used, grouped by area. Highlighted skills are ones I use in my
+            professional work; the rest come from personal, academic or internship projects.
           </p>
+          <div className="flex justify-center gap-6 mt-4 text-sm">
+            <span className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-primary-500"></span> Professional use
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full border border-gray-400"></span> Personal / academic
+            </span>
+          </div>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
-          {categoryTypes.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveFilter(category.id)}
-              className={`px-4 py-2 rounded-full text-sm md:text-base transition-all ${activeFilter === category.id
-                ? 'bg-primary-500 text-white shadow-md'
-                : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
-                }`}
-            >
-              {category.name}
-            </button>
-          ))}
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillGroups.map((group, index) => {
+            const Icon = groupIcons[group.icon] ?? Code;
+            return (
+              <motion.div
+                key={group.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="card bg-gray-50 dark:bg-gray-900"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-primary-100 dark:bg-primary-900/30 p-2 rounded-lg">
+                    <Icon className="h-5 w-5 text-primary-500" />
+                  </div>
+                  <h3 className="text-lg font-bold">{group.title}</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span
+                      key={item.name}
+                      className={`px-3 py-1 text-sm rounded-full ${
+                        item.professional
+                          ? 'bg-primary-500 text-white'
+                          : 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300'
+                      }`}
+                    >
+                      {item.name}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: { staggerChildren: 0.1 }
-            }
-          }}
-          initial="hidden"
-          animate={inView ? "show" : "hidden"}
-        >
-          {filteredSkills.map((skill) => (
-            <motion.div
-              key={skill.id}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.4 } }
-              }}
-              className="card hover:border-primary-300 dark:hover:border-primary-700 flex flex-col items-center"
-              whileHover={{ y: -5 }}
-            >
-              <div className="w-16 h-16 flex items-center justify-center mb-4 bg-primary-100 dark:bg-primary-900/30 rounded-full">
-                <span className="text-2xl">{getSkillEmoji(skill.name)}</span>
+        {/* Currently learning */}
+        <div id="learning" className="mt-16 max-w-5xl mx-auto">
+          <div className="flex items-center gap-3 mb-2 justify-center">
+            <BookOpen className="h-6 w-6 text-primary-500" />
+            <h3 className="text-2xl font-bold">Currently Learning</h3>
+          </div>
+          <p className="text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+            Areas I'm working on now. I'm still building depth in these, not claiming expertise.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {currentlyLearning.map((item) => (
+              <div
+                key={item.topic}
+                className="rounded-xl border border-dashed border-primary-300 dark:border-primary-700 p-4"
+              >
+                <h4 className="font-semibold mb-1">{item.topic}</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{item.detail}</p>
               </div>
-              <h3 className="text-lg font-medium mb-2">{skill.name}</h3>
-              <div className="flex space-x-1 mt-auto">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span
-                    key={i}
-                    className={`block w-2 h-2 rounded-full ${i < skill.proficiency
-                      ? 'bg-primary-500'
-                      : 'bg-gray-200 dark:bg-gray-700'
-                      }`}
-                  ></span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 };
-function getSkillEmoji(skillName: string): string {
-  const normalized = skillName.trim().toLowerCase();
-
-  if (normalized.includes('react')) return '⚛️';
-  if (normalized.includes('typescript')) return '📝';
-  if (normalized.includes('node')) return '🟢';
-  if (normalized.includes('tailwind')) return '🌊';
-  if (normalized.includes('next')) return '🚀';
-  if (normalized.includes('graphql')) return '🕸️';
-  if (normalized.includes('figma')) return '🎨';
-  if (normalized.includes('git')) return '🔄';
-
-  return '🔧';
-}
-
 
 export default SkillsSection;

@@ -64,8 +64,8 @@ const Header: React.FC = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:block">
-          <ul className="flex space-x-8">
+        <nav className="hidden lg:block">
+          <ul className="flex space-x-6">
             {navItems.map((item) => (
               <li key={item.name}>
                 <a
@@ -104,7 +104,7 @@ const Header: React.FC = () => {
           </button>
 
           <button
-            className="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="lg:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
@@ -120,11 +120,11 @@ const Header: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 bg-white dark:bg-gray-900 md:hidden"
+          className="fixed inset-0 z-50 bg-white dark:bg-gray-900 lg:hidden"
         >
           <div className="container-custom py-4 flex justify-between items-center">
             <a href="#home" className="text-2xl font-bold text-primary-500">
-              JD
+              PRP
             </a>
             <button
               onClick={closeMenu}

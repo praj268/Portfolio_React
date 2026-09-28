@@ -8,14 +8,45 @@ export interface Project {
   github?: string;
 }
 
+export interface CaseStudy {
+  id: number;
+  title: string;
+  context: string;
+  overview: string;
+  flow?: string[];
+  contributions: string[];
+  problemsLabel?: string;
+  problems: string[];
+  concepts: string[];
+  tags: string[];
+  github?: string;
+}
+
+export interface AIProject {
+  id: number;
+  title: string;
+  status: string;
+  description: string;
+  focus: string[];
+  tags: string[];
+  github?: string;
+}
+
 export interface Experience {
   id: number;
   title: string;
   company: string;
   location: string;
   period: string;
+  summary?: string;
   description: string[];
   tags: string[];
+  current?: boolean;
+}
+
+export interface CloudUsage {
+  service: string;
+  usage: string;
 }
 
 export interface Education {
@@ -28,12 +59,21 @@ export interface Education {
   achievements: string[];
 }
 
-export interface Skill {
-  id: number;
+export interface SkillItem {
   name: string;
+  professional?: boolean; // used in day-to-day professional work
+}
+
+export interface SkillGroup {
+  id: number;
+  title: string;
   icon: string;
-  category: 'frontend' | 'backend' | 'other' | 'design';
-  proficiency: number; // 1-5
+  items: SkillItem[];
+}
+
+export interface LearningItem {
+  topic: string;
+  detail: string;
 }
 
 export interface SocialLink {

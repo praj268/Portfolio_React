@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               Prajakta Rajendra Patil
             </h3>
             <p className="text-gray-600 dark:text-gray-300 max-w-xs">
-              Java Full-Stack Developer with a passion for creating clean, scalable web apps using modern technologies.
+              Software Engineer working with Python, AWS, data processing and web applications, and growing into AI/LLM engineering.
             </p>
           </div>
 

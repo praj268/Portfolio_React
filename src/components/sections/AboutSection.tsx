@@ -1,6 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import myimg from '../../assets/my-img-1.jpeg';
+
+const highlights = [
+  { value: '~1 yr', label: 'Professional experience' },
+  { value: '3', label: 'Environments I ship through: Integration, UAT, Prod' },
+  { value: 'AI', label: 'Current focus: agentic AI & LLM engineering' },
+];
 
 const AboutSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -25,45 +32,49 @@ const AboutSection: React.FC = () => {
           }}
           className="flex flex-col md:flex-row md:items-center gap-12"
         >
-          <motion.div variants={fadeIn} className="md:w-1/2">
+          <motion.div variants={fadeIn} className="md:w-2/5">
             <img
-              src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg"
+              src={myimg}
               alt="Prajakta Patil"
-              className="rounded-lg shadow-xl w-full h-auto object-cover"
+              className="rounded-lg shadow-xl w-full h-auto max-h-[480px] object-cover"
             />
-
           </motion.div>
 
-          <div className="md:w-1/2">
+          <div className="md:w-3/5">
             <motion.h2 variants={fadeIn} className="section-title text-left mb-6">
               About <span className="text-primary-500">Me</span>
             </motion.h2>
 
             <motion.p variants={fadeIn} className="mb-4 text-gray-600 dark:text-gray-300">
-              I’m a dedicated <strong>Java Full Stack Developer</strong> with a Bachelor’s degree in Computer Applications (BCA) and a strong interest in building end-to-end web applications. I enjoy working on both frontend and backend technologies to deliver complete, efficient solutions.
+              I'm a <strong>Software Engineer</strong> based in India with about a year of
+              professional experience. I work mainly in <strong>Python</strong> on backend
+              development, web crawling and data processing, with event-driven workflows on{' '}
+              <strong>AWS</strong> and data in <strong>PostgreSQL</strong> and{' '}
+              <strong>OpenSearch</strong>.
             </motion.p>
 
             <motion.p variants={fadeIn} className="mb-4 text-gray-600 dark:text-gray-300">
-              My tech stack includes <strong>Java, Spring Boot, React, SQL, HTML, CSS, JavaScript, and C++</strong>. I have developed responsive websites, RESTful APIs, and dynamic interfaces that deliver real business value. I also have hands-on experience with tools like Bootstrap, GSAP, and modern libraries to create interactive user experiences.
+              I also work on full-stack web applications with <strong>Django</strong> and{' '}
+              <strong>React</strong>. A lot of my work is problem solving: following an issue through
+              logs, data and code across environments until I find its cause and ship a fix.
             </motion.p>
 
             <motion.p variants={fadeIn} className="mb-6 text-gray-600 dark:text-gray-300">
-              I thrive on solving problems, continuously learning, and working on real-time projects. I’m currently focused on refining my backend skills and React projects while also preparing for industry-level placements.
+              I'm focused on growing as an <strong>AI engineer</strong>. I use Claude Code in daily
+              development and build agentic AI experiments with LangChain and LangGraph, including
+              data-quality agents and Text-to-SQL.
             </motion.p>
 
-            <motion.div variants={fadeIn} className="flex flex-wrap gap-4">
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex-1 min-w-[150px]">
-                <span className="block text-4xl font-bold text-primary-500 mb-2">10+</span>
-                <span className="block text-gray-500 dark:text-gray-400">Projects Completed</span>
-              </div>
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex-1 min-w-[150px]">
-                <span className="block text-4xl font-bold text-primary-500 mb-2">1st</span>
-                <span className="block text-gray-500 dark:text-gray-400">IIT C++ Competition</span>
-              </div>
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex-1 min-w-[150px]">
-                <span className="block text-xl font-bold text-primary-500 mb-2">Spring Boot + React</span>
-                <span className="block text-gray-500 dark:text-gray-400">Full Stack Focus</span>
-              </div>
+            <motion.div variants={fadeIn} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {highlights.map((item) => (
+                <div
+                  key={item.label}
+                  className="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+                >
+                  <span className="block text-3xl font-bold text-primary-500 mb-2">{item.value}</span>
+                  <span className="block text-sm text-gray-500 dark:text-gray-400">{item.label}</span>
+                </div>
+              ))}
             </motion.div>
           </div>
         </motion.div>
